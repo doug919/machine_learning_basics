@@ -1,0 +1,12 @@
+
+{
+    "load_feature_path": "",
+    "dump_feature_path": "",
+    "loglevel": "ERROR",
+    "training_data_path": "data/train.csv",
+    "validating_data_path": "data/validation.csv",
+    "testing_data_path": "data/test.csv",
+    "unigram_term_freq_threshold": 3,
+    "bigram_term_freq_threshold": 2
+}
+

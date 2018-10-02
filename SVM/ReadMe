@@ -1,0 +1,63 @@
+
+1. This program can be excuted by specifying arguments provided in the template.py, where:
+
+    -i: maxIterations (Defualt: 10)
+    -r: 'l1' or 'l2' (Default: 'l1')
+    -s: stepSize (Default: '0.1')
+    -l: lmbd (Default: 0.1)
+    -f: feature set, where 1 for unigram, 2 for bigram, and 3 for both (Default: 1)
+
+    Example:
+        > python hw3.py -i 1000 -r l2 -s 0.1 -l 0.001 -f 1
+
+2. Output Format
+    Our program output results in stdout in the following format.
+
+    1000 l1 0.1 0.1 1
+    feature extraction takes 0.576128 seconds.
+    training takes 59.273955 seconds.
+    training accuracy: 0.644108
+    training precision: 0.997866
+    training recall: 0.291277
+    training f1: 0.450928
+    validating accuracy: 0.599437
+    validating precision: 0.856667
+    validating recall: 0.240637
+    validating f1: 0.375731
+    testing accuracy: 0.603189
+    testing precision: 0.873646
+    testing recall: 0.229820
+    testing f1: 0.363910
+    --------------------------------------------------------------
+
+    Although I print the results for training/validating/testing, the most important result is the validating accuracy, which is needed by finding the best set of hyperparameters.
+
+3. Settings
+    In the file 'settings.json', we can configure the following arguments:
+
+    {
+        "load_feature_path": "",
+        "dump_feature_path": "",
+        "loglevel": "ERROR",
+        "training_data_path": "data/train.csv",
+        "validating_data_path": "data/validation.csv",
+        "testing_data_path": "data/test.csv",
+        "unigram_term_freq_threshold": 3,
+        "bigram_term_freq_threshold": 2
+    }
+
+    - if "load_feature_path" is specified, my program will load feature sets from the specified feature file, regardless whatever value the "-f" argument is specified. You can set it to “unigram_hw3.pkl”, “bigram_hw3.pkl”, “unibigram_hw3.pkl” that are provided in my current repository, or dump your own one by specifying the "dump_feature_path”.
+    - if "dump_feature_path" is specified, my program will dump the generated feature sets into a feature file, which can be used by "load_feature_path" to save the time for experiments.
+    - "loglevel" can be "ERROR", "DEBUG", and "INFO"
+    - "training_data_path" denotes the csv file of training data.
+    - "validating_data_path" denotes the csv file of validating data.
+    - "testing_data_path" denotes the csv file of testing data.
+    - "unigram_term_freq_threshold" is the threshold for filtering low-frequency words for unigram. We will filter out the words that have less than or equal to this number.
+    - "unigram_term_freq_threshold" is the threshold for filtering low-frequency words for bigram. We will filter out the words that have less than or equal to this number.
+
+
+4. Note that when the maxIteration and stepSize are both very low, there migh   t not any have true positives, false positives, false negative. As a result,
+   we cannot calculate the precision, recall, and F-1. In this case, this progra
+   m will display -1.0 for the precision/recall/f1.
+
+
